@@ -23,7 +23,10 @@ class BusinessCell: UITableViewCell {
     var business: Business! {
         didSet {
             nameLabel.text = business.name
-            thumbImageView.setImageWith(business.imageURL!)
+            if let imageURL = business.imageURL {
+                thumbImageView.setImageWith(imageURL)
+            }
+            
             categoriesLabel.text = business.categories
             addressLabel.text = business.address
             reviewsLabel.text = "\(business.reviewCount!) Reviews"
@@ -35,7 +38,18 @@ class BusinessCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        thumbImageView.layer.cornerRadius = 5
+        thumbImageView.clipsToBounds = true
+        
+        nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
         // Initialization code
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
