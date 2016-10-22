@@ -24,7 +24,11 @@ class BusinessViewController: UIViewController, UITableViewDelegate, UITableView
 
         Business.searchWithTerm(term: "Seafood", completion: { (businesses: [Business]?, error: Error?) -> Void in
 
-            self.businesses = businesses!
+            if businesses != nil {
+                self.businesses = businesses!
+            } else {
+                print("busineses empty = propblem with initial search \n\n ==============================")
+            }
             self.tableView.reloadData()
             if let businesses = businesses {
                 for business in businesses {
