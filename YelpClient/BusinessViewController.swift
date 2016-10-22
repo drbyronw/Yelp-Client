@@ -29,7 +29,9 @@ class BusinessViewController: UIViewController, UITableViewDelegate, UITableView
             } else {
                 print("busineses empty = propblem with initial search \n\n ==============================")
             }
+            
             self.tableView.reloadData()
+            
             if let businesses = businesses {
                 for business in businesses {
                     print(business.name!)
@@ -37,8 +39,7 @@ class BusinessViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             }
 
-            }
-        )
+        })
 
         // Do any additional setup after loading the view.
     }
@@ -85,8 +86,6 @@ class BusinessViewController: UIViewController, UITableViewDelegate, UITableView
             self.businesses = businesses
             self.tableView.reloadData()
         })
-        
     }
-
 
 }
