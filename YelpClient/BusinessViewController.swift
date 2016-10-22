@@ -130,7 +130,6 @@ class BusinessViewController: UIViewController, UITableViewDelegate, UITableView
             self.tableView.reloadData()
         })
     }
-
 }
 
 extension BusinessViewController: UISearchResultsUpdating {
@@ -138,6 +137,4 @@ extension BusinessViewController: UISearchResultsUpdating {
     public func updateSearchResults(for searchController: UISearchController) {
         filterContent(with: searchController.searchBar.text!)
     }
-
-    
 }
