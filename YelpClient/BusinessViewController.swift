@@ -13,15 +13,34 @@ class BusinessViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
 
     var businesses: [Business]?
-
+    var filteredBusinesses: [Business]?
+    var searchController: UISearchController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // tableView initialization
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
 
+        // search bar intialization
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        
+        searchController.dimsBackgroundDuringPresentation = false // prevent dimming while searching
+        searchController.searchBar.sizeToFit()
+        navigationItem.titleView = searchController.searchBar // add search bar to nav title area
+        
+        // Sets this view controller as presenting view controller for the search interface
+        definesPresentationContext = true
+        
+        // By default the navigation bar hides when presenting the
+        // search interface.  Obviously we don't want this to happen if
+        // our search bar is inside the navigation bar.
+        searchController.hidesNavigationBarDuringPresentation = false
+        
         Business.searchWithTerm(term: "Seafood", completion: { (businesses: [Business]?, error: Error?) -> Void in
 
             if businesses != nil {
@@ -51,7 +70,11 @@ class BusinessViewController: UIViewController, UITableViewDelegate, UITableView
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if businesses != nil {
-            return businesses!.count
+            if searchController.isActive && searchController.searchBar.text != "" {
+                return filteredBusinesses!.count
+            } else {
+                return businesses!.count
+            }
         } else {
             return 0
         }
@@ -60,9 +83,29 @@ class BusinessViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as? BusinessCell
 
-        cell?.business = businesses?[indexPath.row]
-
+        if searchController.isActive && searchController.searchBar.text != "" {
+            cell?.business = filteredBusinesses?[indexPath.row]
+        } else {
+            cell?.business = businesses?[indexPath.row]
+        }
+        
         return cell!
+    }
+    
+    // MARK: Perform Search
+    func filterContent(with searchText: String) {
+        var searchCheck = ""
+        filteredBusinesses = businesses!.filter {business in
+            searchCheck = business.name!
+            if searchCheck.lowercased().contains(searchText.lowercased()) {
+                print("Search Match: \(searchCheck)")
+                return true
+            } else {
+                return false
+            }
+        }
+        
+        tableView.reloadData()
     }
 
 
@@ -88,4 +131,13 @@ class BusinessViewController: UIViewController, UITableViewDelegate, UITableView
         })
     }
 
+}
+
+extension BusinessViewController: UISearchResultsUpdating {
+    @available(iOS 8.0, *)
+    public func updateSearchResults(for searchController: UISearchController) {
+        filterContent(with: searchController.searchBar.text!)
+    }
+
+    
 }
