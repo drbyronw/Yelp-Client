@@ -92,6 +92,7 @@ class BusinessViewController: UIViewController, UITableViewDelegate, UITableView
         return cell!
     }
     
+       
     // MARK: Perform Search
     func filterContent(with searchText: String) {
         var searchCheck = ""
@@ -115,16 +116,22 @@ class BusinessViewController: UIViewController, UITableViewDelegate, UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let navigationController = segue.destination as! UINavigationController
         let filtersViewController = navigationController.topViewController as! FiltersViewController
-
+        
         filtersViewController.delegate = self
-
+        
     }
 
     func filtersViewController(_ filtersViewController: FiltersViewController, didUpdateFilters filters: [String : AnyObject]) {
         
         let categories = filters["categories"] as? [String]
+        let deals = filters["deals"] as? Bool
+        let sortedBy = filters["sortedBy"] as? Int
+        let sortMode = YelpSortMode(rawValue: sortedBy!)
+        print("Categories \(categories)-------------")
+        print("Deals: \(deals) ------------------------")
+        print("SortedBy Int: \(sortedBy) ------------------------")
         
-        Business.searchWithTerm(term: "Restaurant", sort: nil, categories: categories, deals: nil, completion: {
+        Business.searchWithTerm(term: "Restaurant", sort: sortMode, categories: categories, deals: deals, completion: {
             (businesses: [Business]?, error: Error?) -> Void in
             self.businesses = businesses
             self.tableView.reloadData()
