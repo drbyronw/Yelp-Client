@@ -41,6 +41,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
+<image href="https://github.com/drbyronw/Yelp-Client/raw/master/yelp-demo.gif">
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
