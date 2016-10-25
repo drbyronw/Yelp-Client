@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="92" width="375" height="131"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="leA-rQ-zHX" id="qtf-Ym-6vU">
-                                            <frame key="frameInset" width="375" height="130"/>
+                                            <frame key="frameInset" width="375" height="131"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vpl-3v-u8R">
@@ -128,7 +128,7 @@
                     <navigationItem key="navigationItem" title="Yelp" id="xRd-pe-38g">
                         <barButtonItem key="leftBarButtonItem" title="Filters" id="GQn-Ov-FQK">
                             <connections>
-                                <segue destination="FoB-P1-wvl" kind="presentation" id="7nB-Lf-HQe"/>
+                                <segue destination="FoB-P1-wvl" kind="presentation" identifier="filters1Segue" id="7nB-Lf-HQe"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -152,34 +152,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="73" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bMc-U6-qCA">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="51" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bMc-U6-qCA">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SwitchCell" rowHeight="73" id="fgB-Tq-J0i" customClass="SwitchCell" customModule="YelpClient" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="73"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SelectionCell" rowHeight="50" id="fgB-Tq-J0i">
+                                        <rect key="frame" x="0.0" y="92" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fgB-Tq-J0i" id="Xu7-MZ-A0m">
-                                            <frame key="frameInset" width="375" height="72"/>
+                                            <frame key="frameInset" width="375" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCM-s7-4wr">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FilterLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCM-s7-4wr">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AdS-mn-N4m"/>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="AdS-mn-N4m" secondAttribute="trailing" constant="17" id="ML9-LF-GHn"/>
                                                 <constraint firstItem="MCM-s7-4wr" firstAttribute="leading" secondItem="Xu7-MZ-A0m" secondAttribute="leadingMargin" constant="14" id="cuc-E2-3Uz"/>
                                                 <constraint firstItem="MCM-s7-4wr" firstAttribute="top" secondItem="Xu7-MZ-A0m" secondAttribute="topMargin" constant="10" id="gMk-sb-7PG"/>
-                                                <constraint firstItem="AdS-mn-N4m" firstAttribute="centerY" secondItem="MCM-s7-4wr" secondAttribute="centerY" id="ihL-BA-3kx"/>
-                                                <constraint firstItem="AdS-mn-N4m" firstAttribute="top" secondItem="Xu7-MZ-A0m" secondAttribute="top" constant="13" id="rTN-H0-fIy"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SwitchCell" rowHeight="49" id="l3V-8R-lyn" customClass="SwitchCell" customModule="YelpClient" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="142" width="375" height="49"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l3V-8R-lyn" id="hnB-cN-JCz">
+                                            <frame key="frameInset" width="375" height="48"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3d-3Z-8db">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="geM-D1-7xb"/>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="geM-D1-7xb" firstAttribute="centerY" secondItem="V3d-3Z-8db" secondAttribute="centerY" id="0WO-Ou-u2z"/>
+                                                <constraint firstItem="geM-D1-7xb" firstAttribute="top" secondItem="hnB-cN-JCz" secondAttribute="top" constant="8" id="ho1-6f-h2i"/>
+                                                <constraint firstAttribute="trailing" secondItem="geM-D1-7xb" secondAttribute="trailing" constant="17" id="keh-8a-6It"/>
+                                                <constraint firstItem="V3d-3Z-8db" firstAttribute="top" secondItem="hnB-cN-JCz" secondAttribute="topMargin" constant="5" id="nVS-CL-49x"/>
+                                                <constraint firstItem="V3d-3Z-8db" firstAttribute="leading" secondItem="hnB-cN-JCz" secondAttribute="leadingMargin" constant="14" id="wIw-DQ-lI4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="filterLabel" destination="MCM-s7-4wr" id="71c-JB-uDe"/>
-                                            <outlet property="onSwitch" destination="AdS-mn-N4m" id="Bbi-lT-gqU"/>
+                                            <outlet property="filterLabel" destination="V3d-3Z-8db" id="ML9-pn-9YM"/>
+                                            <outlet property="onSwitch" destination="geM-D1-7xb" id="DiG-jR-nsJ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
